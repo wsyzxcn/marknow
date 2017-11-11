@@ -42,7 +42,7 @@ def generateNewHtml(filelist):
     content = tmplcontent.replace("<?placeholder?>", body)
     fd = os.open("display.html", os.O_CREAT)
     os.close(fd)
-    print content
+    # print content
     displayfile = open("display.html", "w+")
     displayfile.write(content)
 
