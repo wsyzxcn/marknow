@@ -5,9 +5,12 @@
 
 - 将需要上传的图片复制到pic目录下
 
+  ![示例](https://raw.githubusercontent.com/wsyzxcn/marknow/master/pics/demo.png)
+
 - 运行main.py
 
 - 用浏览器打开display.html可以查看到**新上传**的图片对应的链接,复制下来就粘贴到文章中就可以啦
 
-  ![示例](https://raw.githubusercontent.com/wsyzxcn/marknow/master/pics/demo.png)
+  ​
 
+![新上传的图片列表](<https://raw.githubusercontent.com/wsyzxcn/marknow/master/pics/html.png>)
