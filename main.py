@@ -58,7 +58,7 @@ def getRawBaseUrl():
     remoteUrl = getRemotePath()
     print remoteUrl
     accountname = re.search("github\.com/([^/]*)", remoteUrl).group(1)
-    reponame = re.search("([^/]*)\.git$", remoteUrl).group(1)
+    reponame = re.search("([^/]*)\.git$", remoteUrl, re.M).group(1)
     return "https://raw.githubusercontent.com/%s/%s/master/" % (accountname, reponame)
 
 
