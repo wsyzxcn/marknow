@@ -33,9 +33,10 @@ def commitAndPublish(filelist):
 
 def generateNewHtml(filelist):
     body = ''
+    rawBaseUrl = getRawBaseUrl()
     for file in filelist:
         body += '<img src="%s"/>\n'%os.path.abspath(file)
-        body += '<p>%s</p>'%os.path.basename(file)
+        body += '<p>%s</p>\n' % "%s%s"%(rawBaseUrl, file)
     tmplfile = open("tmpl/newfileurl.html")
     tmplcontent = tmplfile.read()
     content = tmplcontent.replace("<?placeholder?>", body)
@@ -43,6 +44,22 @@ def generateNewHtml(filelist):
     os.close(fd)
     displayfile = open("display.html", "w+")
     displayfile.write(content)
+
+def getRemotePath():
+    ret = subprocess.check_output("git remote -v", shell=True)
+    mo = re.search("[^\s]*\s*(.*)\(fetch\)")
+    if mo:
+        return mo.group(1)
+    else:
+        raise Exception("fail to get remote path")
+
+
+def getRawBaseUrl():
+    reomteUrl = getRemotePath()
+    accountname = re.search("github.com/([^/]*)", remoteUrl).group(1)
+    reponame = re.search("([^/]*\.git$)").group(1)
+    return "https://raw.githubusercontent.com/%s/%s/master/" % (accountname, reponame)
+
 
 
 def main():
