@@ -35,8 +35,8 @@ def generateNewHtml(filelist):
     body = ''
     rawBaseUrl = getRawBaseUrl()
     for file in filelist:
-        body += '<img src="%s"/>\n'%os.path.abspath(file)
-        body += '<a href="%s">%s</a>\n' % ("%s%s"%(rawBaseUrl, file), "%s%s"%(rawBaseUrl, file))
+        body += '<img src="%s"/><br/>\n'%os.path.abspath(file)
+        body += '<a href="%s">%s</a><br/>\n' % ("%s%s"%(rawBaseUrl, file), "%s%s"%(rawBaseUrl, file))
     tmplfile = open("tmpl/newfileurl.html")
     tmplcontent = tmplfile.read()
     content = tmplcontent.replace("<?placeholder?>", body)
