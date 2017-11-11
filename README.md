@@ -7,6 +7,6 @@
 
 - 运行main.py
 
-- 用浏览器打开display.html可以查看到**新上传**的图片对应的链接
+- 用浏览器打开display.html可以查看到**新上传**的图片对应的链接,复制下来就粘贴到文章中就可以啦
 
-  ![]()
+  ![<https://raw.githubusercontent.com/wsyzxcn/marknow/master/pics/demo.png>]()
