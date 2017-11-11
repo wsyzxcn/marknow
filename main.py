@@ -27,7 +27,7 @@ def commitAndPublish(filelist):
     for f in filelist:
         msg += f+"\n"
     subprocess.Popen('git commit -m "%s"' % msg, shell=True).wait()
-    subprocess.Popen('git push origin master').wait()
+    subprocess.Popen('git push origin master', shell=True).wait()
     generateNewHtml(filelist)
 
 
