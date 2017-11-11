@@ -41,7 +41,7 @@ def generateNewHtml(filelist):
     fd = os.open("display.html", os.O_CREAT)
     os.close(fd)
     displayfile = open("display.html", "w+")
-    displayfile(content)
+    displayfile.write(content)
 
 
 def main():
