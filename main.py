@@ -1,3 +1,4 @@
+# encoding:utf8
 import subprocess
 import re
 import os
@@ -12,7 +13,7 @@ def setup():
 
 
 def updateGitStatus():
-    subprocess.Popen("git add -A .", shell=True)
+    subprocess.Popen("git add -A .", shell=True).wait()
 
 
 def getNewFileList():
@@ -25,13 +26,23 @@ def commitAndPublish(filelist):
     msg = '新增%s张图片'%len(filelist)
     for f in filelist:
         msg += f+"\n"
-    subprocess.Popen('git commit -m "%s"' % msg, shell=True)
-    subprocess.Popen('git push origin master')
+    subprocess.Popen('git commit -m "%s"' % msg, shell=True).wait()
+    subprocess.Popen('git push origin master').wait()
     generateNewHtml(filelist)
 
 
 def generateNewHtml(filelist):
-    pass
+    body = ''
+    for file in filelist:
+        body += '<img src="%s"/>\n'%os.path.abspath(file)
+    tmplfile = open("tmpl/newfileurl.html")
+    tmplcontent = tmplfile.read()
+    content = tmplcontent.replace("<?placeholder?>", body)
+    fd = os.open("display.html", os.O_CREAT)
+    os.close(fd)
+    displayfile = open("display.html", "w+")
+    displayfile(content)
+
 
 def main():
     if not hasSetup():
@@ -43,3 +54,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
