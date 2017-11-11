@@ -47,7 +47,7 @@ def generateNewHtml(filelist):
 
 def getRemotePath():
     ret = subprocess.check_output("git remote -v", shell=True)
-    mo = re.search("[^\s]*\s*(.*)\(fetch\)")
+    mo = re.search("[^\s]*\s*(.*)\(fetch\)", ret)
     if mo:
         return mo.group(1)
     else:
