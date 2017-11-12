@@ -3,6 +3,7 @@ import subprocess
 import re
 import os
 import sys
+import urllib
 
 def hasSetup():
     return True
@@ -35,8 +36,11 @@ def generateNewHtml(filelist):
     body = ''
     rawBaseUrl = getRawBaseUrl()
     for file in filelist:
+        print file
+        print file.decode("utf8")
+        fileUrl = urllib.quote("%s%s"%(rawBaseUrl, file))
         body += '<img src="%s"/><br/>\n'%os.path.abspath(file)
-        body += '<a href="%s">%s</a><br/>\n' % ("%s%s"%(rawBaseUrl, file), "%s%s"%(rawBaseUrl, file))
+        body += '<a href="%s">%s</a><br/>\n' % (fileUrl, fileUrl)
     tmplfile = open("tmpl/newfileurl.html")
     tmplcontent = tmplfile.read()
     content = tmplcontent.replace("<?placeholder?>", body)
