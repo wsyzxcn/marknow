@@ -6,10 +6,11 @@ import sys
 import urllib
 
 def hasSetup():
-    return True
+    return False
 
 
 def setup():
+    subprocess.Popen("git config --global core.quotepath false", shell=True).wait()
     pass
 
 
