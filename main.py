@@ -36,7 +36,7 @@ def generateNewHtml(filelist):
     body = ''
     rawBaseUrl = getRawBaseUrl()
     for file in filelist:
-        fileUrl = urllib.quote("%s%s"%(rawBaseUrl, file))
+        fileUrl = "%s%s"%(rawBaseUrl, file)
         body += '<img src="%s"/><br/>\n'%os.path.abspath(file)
         body += '<a href="%s">%s</a><br/>\n' % (fileUrl, fileUrl)
     tmplfile = open("tmpl/newfileurl.html")
