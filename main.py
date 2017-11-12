@@ -37,7 +37,7 @@ def generateNewHtml(filelist):
     rawBaseUrl = getRawBaseUrl()
     for file in filelist:
         print file
-        print file.decode("utf8")
+        print file.encode("utf8")
         fileUrl = urllib.quote("%s%s"%(rawBaseUrl, file))
         body += '<img src="%s"/><br/>\n'%os.path.abspath(file)
         body += '<a href="%s">%s</a><br/>\n' % (fileUrl, fileUrl)
