@@ -64,11 +64,17 @@ def getRawBaseUrl():
     reponame = re.search("([^/]*)\.git\s*$", remoteUrl, re.M).group(1)
     return "https://raw.githubusercontent.com/%s/%s/master/" % (accountname, reponame)
 
-
+def validateFilename():
+    files = os.listdir("pics")
+    for f in files:
+        fr = f.replace(" ", "")
+        if fr != f:
+            os.rename(os.path.join("pics", f), os.path.join("pics", fr))
 
 def main():
     if not hasSetup():
         setup()
+    validateFilename()
     updateGitStatus()
     newFiles = getNewFileList()
     commitAndPublish(newFiles)
